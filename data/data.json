@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "value": "할 일 1",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "value": "할 일 2",
+      "isDone": false
+    },
+    {
+      "id": 3,
+      "value": "할 일 3",
+      "isDone": true
+    },
+    {
+      "id": 4,
+      "value": "공부하기 싫다",
+      "isDone": false
+    },
+    {
+      "id": 5,
+      "value": "핑크 올클",
+      "isDone": false
+    }
+  ]
+}
