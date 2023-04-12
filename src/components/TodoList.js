@@ -1,53 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import TodoListItem from "./TodoListItem";
+import TodoInsert from "./TodoIsert";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/todos")
       .then((data) => setTodos(data.data));
   }, []);
-
-  const onChange = useCallback((e) => {
-    setValue(e.target.value);
-  }, []);
-
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!value) {
-        return;
-      }
-      const data = {
-        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
-        value: value,
-        isDone: false,
-      };
-      axios.post(`http://localhost:3001/todos`, data).then((response) => {
-        setTodos([...todos, response.data]);
-      });
-      setValue("");
-    },
-    [value, todos]
-  );
-
-  const onRemove = useCallback(
-    (id) => {
-      axios
-        .delete(`http://localhost:3001/todos/${id}`)
-        // .then : UI상에서만 임시로 데이터 보여주기.
-        .then((response) => {
-          const newTodos = todos.filter((el) => id !== el.id);
-          setTodos(newTodos);
-        })
-        .catch((err) => console.log(Error));
-    },
-    [todos]
-  );
 
   const onCheck = useCallback(
     (id, e) => {
@@ -94,19 +57,12 @@ const TodoList = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          placeholder="할 일을 입력하세요"
-          onChange={onChange}
-          value={value}
-        />
-        <button type="submit">add</button>
-      </form>
+      <TodoInsert todos={todos} setTodos={setTodos} />
       {todos.map((todo) => (
         <TodoListItem
           todo={todo}
+          setTodos={setTodos}
           key={todo.id}
-          onRemove={onRemove}
           onCheck={onCheck}
           onEdit={onEdit}
         />
