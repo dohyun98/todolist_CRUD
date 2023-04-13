@@ -14,19 +14,16 @@ const TodoListItem = ({ todo, onCheck, onEdit, setTodos }) => {
         })
         .catch((err) => console.log(Error));
     },
-    [todo]
+    [id]
   );
-
   return (
     <div className="TodoListItem">
-      <input
-        type="checkbox"
-        checked={isDone}
-        onChange={(e) => onCheck(id, e)}
-      />
-      <div className="text">{value}</div>
-      <button onClick={() => onRemove(id)}>X</button>
-      <button onClick={() => onEdit(id)}>edit</button>
+      <li>
+        <input type="checkbox" checked={isDone} onChange={(e) => onCheck(id, e)} />
+        <div className="text">{value}</div>
+        <button onClick={() => onRemove(id)}>X</button>
+        <button onClick={() => onEdit(id)}>edit</button>
+      </li>
     </div>
   );
 };

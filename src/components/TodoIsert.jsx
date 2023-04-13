@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
-import axios from "axios";
+import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 const TodoInsert = ({ todos, setTodos }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const onChange = useCallback((e) => {
     setValue(e.target.value);
@@ -22,19 +22,15 @@ const TodoInsert = ({ todos, setTodos }) => {
       axios.post(`http://localhost:3001/todos`, data).then((response) => {
         setTodos([...todos, response.data]);
       });
-      setValue("");
+      setValue('');
     },
-    [value, todos]
+    [value, todos],
   );
 
   return (
     <div className="TodoInsert">
       <form onSubmit={onSubmit}>
-        <input
-          placeholder="할 일을 입력하세요"
-          onChange={onChange}
-          value={value}
-        />
+        <input placeholder="할 일을 입력하세요" onChange={onChange} value={value} />
         <button type="submit">add</button>
       </form>
     </div>

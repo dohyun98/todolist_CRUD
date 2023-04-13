@@ -7,9 +7,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/todos")
-      .then((data) => setTodos(data.data));
+    axios.get("http://localhost:3001/todos").then((data) => setTodos(data.data));
   }, []);
 
   const onCheck = useCallback(
@@ -58,15 +56,11 @@ const TodoList = () => {
   return (
     <div>
       <TodoInsert todos={todos} setTodos={setTodos} />
-      {todos.map((todo) => (
-        <TodoListItem
-          todo={todo}
-          setTodos={setTodos}
-          key={todo.id}
-          onCheck={onCheck}
-          onEdit={onEdit}
-        />
-      ))}
+      <ul>
+        {todos.map((todo) => (
+          <TodoListItem todo={todo} setTodos={setTodos} key={todo.id} onCheck={onCheck} onEdit={onEdit} />
+        ))}
+      </ul>
     </div>
   );
 };
