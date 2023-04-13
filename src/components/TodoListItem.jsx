@@ -1,5 +1,18 @@
-import axios from "axios";
-import React, { useCallback } from "react";
+import axios from 'axios';
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+
+const List = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .checkbox {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+`;
 const TodoListItem = ({ todo, onCheck, onEdit, setTodos }) => {
   const { id, value, isDone } = todo;
 
@@ -14,17 +27,15 @@ const TodoListItem = ({ todo, onCheck, onEdit, setTodos }) => {
         })
         .catch((err) => console.log(Error));
     },
-    [id]
+    [id],
   );
   return (
-    <div className="TodoListItem">
-      <li>
-        <input type="checkbox" checked={isDone} onChange={(e) => onCheck(id, e)} />
-        <div className="text">{value}</div>
-        <button onClick={() => onRemove(id)}>X</button>
-        <button onClick={() => onEdit(id)}>edit</button>
-      </li>
-    </div>
+    <List>
+      <input type="checkbox" checked={isDone} onChange={(e) => onCheck(id, e)} />
+      <div className="text">{value}</div>
+      <button onClick={() => onRemove(id)}>X</button>
+      <button onClick={() => onEdit(id)}>edit</button>
+    </List>
   );
 };
 
