@@ -68,7 +68,7 @@ const TodoList = () => {
     <Todo>
       <TodoInsert todos={todos} setTodos={setTodos} />
       {todos.map((todo) => (
-        <TodoListItem todo={todo} setTodos={setTodos} key={todo.id} onCheck={onCheck} onEdit={onEdit} />
+        <TodoListItem todo={todo} todos={todos} setTodos={setTodos} key={todo.id} onCheck={onCheck} onEdit={onEdit} />
       ))}
     </Todo>
   );
