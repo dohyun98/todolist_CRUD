@@ -17,12 +17,22 @@
     },
     {
       "id": 4,
-      "value": "우와",
+      "value": "aaa",
       "isDone": false
     },
     {
       "id": 5,
-      "value": "해결~\\",
+      "value": "aaa",
+      "isDone": false
+    },
+    {
+      "id": 6,
+      "value": "수정 하지말고",
+      "isDone": false
+    },
+    {
+      "id": 7,
+      "value": "삭제 하고 다시 만들자..",
       "isDone": false
     }
   ]

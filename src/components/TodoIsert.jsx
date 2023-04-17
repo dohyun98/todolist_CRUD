@@ -8,24 +8,21 @@ const TodoInsert = ({ todos, setTodos }) => {
     setValue(e.target.value);
   }, []);
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!value) {
-        return;
-      }
-      const data = {
-        id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
-        value: value,
-        isDone: false,
-      };
-      axios.post(`http://localhost:3001/todos`, data).then((response) => {
-        setTodos([...todos, response.data]);
-      });
-      setValue('');
-    },
-    [value, todos],
-  );
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!value) {
+      return;
+    }
+    const data = {
+      id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
+      value: value,
+      isDone: false,
+    };
+    axios.post(`http://localhost:3001/todos`, data).then((response) => {
+      setTodos([...todos, response.data]);
+    });
+    setValue('');
+  };
 
   return (
     <div className="TodoInsert">
